@@ -1,13 +1,12 @@
 const express = require("express");
 const app = express();
 const request = require("request");
-const pool = require("./dbPool.js")
+const pool = require("./dbPool.js");
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 
-//variables
-let accessKey = "-0hJCTSs9s18rNJ8EKG-16qB98arTB_-W9jo82T2uok";
+const accessKey = "-0hJCTSs9s18rNJ8EKG-16qB98arTB_-W9jo82T2uok";
 
 //routes
 app.get("/", async function(req, res) {
@@ -70,8 +69,7 @@ app.get("/api/getFavorites", function(req, res) {
 
 }); //api/getFavorites
 
-
-function getRandomImage(keyword, count) {
+async function getRandomImage(keyword, count) {
     return new Promise(function(resolve, reject) {
         let requestUrl = `https://api.unsplash.com/photos/random/?count=${count}&client_id=${accessKey}&featured=true&orientation=landscape&query=${keyword}`;
 
